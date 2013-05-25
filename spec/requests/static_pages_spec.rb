@@ -2,70 +2,39 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  let(:base_title) { "Aplicacion muestra del tutorial de Ruby on Rails" }
+  #let(:base_title) { "Aplicacion muestra del tutorial de Ruby on Rails" }
+
+  subject { page }
 
   describe "Pagina de inicio" do
+    before { visit root_path }
+    #sinonimo de
+    #before(:each) { visit root_path }
 
-    it "should have the h1 'Aplicacion muestra'" do
-      visit '/static_pages/home'
-      page.should have_selector('h1',:text => "Aplicacion muestra")
-    end
-
-    it "should have the base title" do
-      visit '/static_pages/home'
-      page.should have_selector('title',
-                  :text => "Aplicacion muestra del tutorial de Ruby on Rails")
-    end
-
-    it "should not have a custom page title" do
-      visit '/static_pages/home'
-      page.should_not have_selector('title', :text => '| Inicio')
-    end
+    it { should have_selector('h1', text: 'Aplicacion muestra') }
+    it { should have_selector('title', :text => full_title('')) }
+    it { should_not have_selector('title', :text => '| Inicio') }
+    #/nerf
   end
 
   describe "Pagina de ayuda" do
+    before { visit help_path }
 
-    it "should have the h1 'Ayuda'" do
-      visit '/static_pages/help'
-      page.should have_selector('h1',:text => 'Ayuda')
-    end
-
-    it "should have the title 'Ayuda'" do
-      visit '/static_pages/help'
-      page.should have_selector('title',
-                  :text => "#{base_title} | Ayuda")
-    end
-
+    it { should have_selector('h1', :text => 'Ayuda') }
+    it { should have_selector('title', :text => full_title('Ayuda')) }
   end
 
   describe "Pagina de acerca de" do
+    before { visit about_path }
 
-    it "should have the h1 'Acerca de nosotros'" do
-      visit '/static_pages/about'
-      page.should have_selector('h1',:text => 'Acerca de nosotros')
-    end
-
-    it "should have the title 'Acerca de nosotros'" do
-      visit '/static_pages/about'
-      page.should have_selector('title',
-                  :text => "#{base_title} | Acerca de nosotros")
-    end
-
+    it { should have_selector('h1',:text => 'Acerca de nosotros') }
+    it { should have_selector('title', :text => full_title('Acerca de nosotros')) }
   end
 
   describe "Pagina de contacto" do
+    before { visit contact_path }
 
-    it "should have the h1 'Contactanos'" do
-      visit '/static_pages/contact'
-      page.should have_selector('h1',:text => 'Contactanos')
-    end
-
-    it "should have the title 'Contactanos'" do
-      visit '/static_pages/contact'
-      page.should have_selector('title',
-                  :text => "#{base_title} | Contactanos")
-    end
+    it { should have_selector('h1',:text => 'Contactanos') }
+    it { should have_selector('title', :text => full_title('Contactanos')) }
   end
-
-
 end
