@@ -1,3 +1,5 @@
+include ApplicationHelper
+
 def full_title(page_title)
   base_title = "Aplicacion muestra del tutorial de Ruby on Rails"
   if page_title.empty?
