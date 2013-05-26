@@ -56,6 +56,7 @@ describe "UserPages" do
 
         it { should have_selector('title', text: user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Bienvenido') }
+        it { should have_link('Cerrar sesion') }
       end
     end
   end
