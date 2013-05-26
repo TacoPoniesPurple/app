@@ -65,8 +65,8 @@ describe "Static pages" do
     click_link "Contactanos"
     page.should have_selector 'title', text: full_title('Contactanos')
     click_link "Inicio"
-    click_link "Iniciar sesion ahora!"
-    page.should have_selector 'title', text: full_title('Iniciar sesion')
+    click_link "Registrarse ahora!"
+    page.should have_selector 'title', text: full_title('Registrarse')
     click_link "Aplicacion muestra"
     page.should have_selector 'title', text: full_title('')
   end

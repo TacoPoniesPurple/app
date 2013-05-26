@@ -15,19 +15,19 @@ describe "UserPages" do
   describe "signup page" do
     before { visit signup_path }
 
-    it { should have_selector('h1',    text: 'Iniciar sesion') }
-    it { should have_selector('title', text: 'Iniciar sesion') }
+    it { should have_selector('h1',    text: 'Registrarse') }
+    it { should have_selector('title', text: 'Registrarse') }
   end
 
   describe "signup" do
 
-    before { visit sugnup_path }
+    before { visit signup_path }
 
     let(:submit) { "Crear mi cuenta" }
 
     describe "with invalid information" do
       it "should not create a user" do
-        expect { click_button submit }.not_to change(USer, :count)
+        expect { click_button submit }.not_to change(User, :count)
         end
     end
 
@@ -39,8 +39,8 @@ describe "UserPages" do
         fill_in "Confirmacion", with: "foobar"
       end
 
-      if "should create a user" do
-      expect { click_button submit }.to change(User, :count).by(1)
+      it "should create a user" do
+        expect { click_button submit }.to change(User, :count).by(1)
       end
     end
   end
