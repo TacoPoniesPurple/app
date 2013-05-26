@@ -7,14 +7,14 @@
           <li><%= link_to "Inicio",    root_path %></li>
           <li><%= link_to "Ayuda",    help_path %></li>
           <% if signed_in? %>
-              <li><%= link_to "Usuarios", '#' %></li>
+              <li><%= link_to "Usuarios", users_path %></li>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   Account <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Perfil", current_user %></li>
-                  <li><%= link_to "Opciones", '#' %></li>
+                  <li><%= link_to "Opciones", edit_user_path(current_user) %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to "Cerrar sesion", signout_path, method: "delete" %>

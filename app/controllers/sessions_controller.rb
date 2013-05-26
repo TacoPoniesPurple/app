@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #iniciar sesion y redirigir a la pagina del usuario
       sign_in user
-      redirect_to user
+      redirect_back_or user
     else
       # crear un mensaje de error y re-renderizar la pagina de inicio de sesion
       flash.now[:error] = 'Combinacion de email/password incorrecta'
