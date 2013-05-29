@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def feed
-    # Codigo incompleto, falta "Following users"
-    Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
+    #Micropost.where("user_id = ?", id)
   end
 
   def following?(other_user)
