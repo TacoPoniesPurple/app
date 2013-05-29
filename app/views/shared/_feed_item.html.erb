@@ -5,7 +5,35 @@
   </span>
   <span class="content"><%= feed_item.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    <!--Posted <%= time_ago_in_words(feed_item.created_at) %> ago. -->
+    <!--Posted <%= time_ago_in_words(feed_item.created_at) %> ago. -->
+    <% a = time_ago_in_words(feed_item.created_at).split %>
+    <% if a.first == "about" %>
+        <% a[0] = "aproximadamente" %>
+    <% end %>
+    <% if a.first == "less" %>
+        <% a[0] = "menos" %>
+        <% a[1] = "de" %>
+        <% a[2] = "un" %>
+    <% end %>
+    <% case a.last %>
+        <% when "second" then a[a.length-1] = 'segundo' %>
+        <% when "seconds" then a[a.length-1] = 'segundos' %>
+    <% when "minute" then a[a.length-1] = 'minuto' %>
+    <% when "minutes" then a[a.length-1] = 'minutos' %>
+    <% when "hour" then a[a.length-1] = 'hora' %>
+    <% when "hours" then a[a.length-1] = 'horas' %>
+    <% when "day" then a[a.length-1] = 'dia' %>
+    <% when "days" then a[a.length-1] = 'dias' %>
+    <% when "week" then a[a.length-1] = 'semana' %>
+    <% when "weeks" then a[a.length-1] = 'semanas' %>
+    <% when "month" then a[a.length-1] = 'mes' %>
+    <% when "months" then a[a.length-1] = 'meses' %>
+    <% when "year" then a[a.length-1] = 'año' %>
+    <% when "year" then a[a.length-1] = 'año' %>
+    <% when "years" then a[a.length-1] = 'años' %>
+    <% end %>
+    Publicado hace <%= a.join(' ') %>.
   </span>
   <% if current_user?(feed_item.user) %>
       <%= link_to "borrar", feed_item, method: :delete,
